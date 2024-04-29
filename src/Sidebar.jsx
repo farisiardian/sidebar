@@ -1,0 +1,79 @@
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBars,
+  faTimes,
+  faChartPie,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
+
+const Sidebar = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  return (
+    <div className="relative">
+      {/* Toggle Button */}
+      <button
+        onClick={toggleSidebar}
+        className="block lg:hidden text-gray-800 dark:text-gray-200 p-2 focus:outline-none"
+      >
+        <FontAwesomeIcon icon={isSidebarOpen ? faTimes : faBars} />
+      </button>
+
+      {/* Sidebar */}
+      <aside
+        className={`flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700 transform lg:translate-x-0 ${
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-300 ease-in-out lg:static`}
+      >
+        <a href="#" className="mx-auto">
+          <img
+            className="w-auto h-6 sm:h-7"
+            src="https://merakiui.com/images/full-logo.svg"
+            alt="Logo"
+          />
+        </a>
+
+        <div className="flex flex-col items-center mt-6 -mx-2">
+          <img
+            className="object-cover w-24 h-24 mx-2 rounded-full"
+            src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Avatar"
+          />
+          <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200">
+            John Doe
+          </h4>
+          <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">
+            john@example.com
+          </p>
+        </div>
+
+        <div className="flex flex-col justify-between flex-1 mt-6">
+          <nav>
+            <a
+              className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-800 dark:text-gray-200"
+              href="#"
+            >
+              <FontAwesomeIcon icon={faChartPie} className="w-5 h-5" />
+              <span className="mx-4 font-medium">Dashboard</span>
+            </a>
+
+            <a
+              className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+              href="#"
+            >
+              <FontAwesomeIcon icon={faUser} className="w-5 h-5" />
+              <span className="mx-4 font-medium">Accounts</span>
+            </a>
+          </nav>
+        </div>
+      </aside>
+    </div>
+  );
+};
+
+export default Sidebar;
